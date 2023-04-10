@@ -17,6 +17,11 @@ module.exports = {
       'custom-orange-300': '#F39765',
       'custom-white-200': '#F5F5F5',
       'custom-white-100': '#FFFFFF',
+    },
+    fontSize: {
+      'custom-text-body': '13px',
+      'custom-text-heading-sm': '14px',
+      'custom-text-heading-md': '15px',
     }
   },
   plugins: [],

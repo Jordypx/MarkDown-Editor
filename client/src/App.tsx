@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Header from "./components/Header";
 
 const App = () => {
   return (
-    <div className='w-screen h-screen bg-custom-orange-400'></div>
-  )
-}
+    <React.Fragment>
+      <Header />
+    </React.Fragment>
+  );
+};
 
-export default App
+export default App;
