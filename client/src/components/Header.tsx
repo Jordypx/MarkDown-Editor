@@ -4,7 +4,7 @@ import FileDetaiil from "./FileDetaiil";
 
 const Header = () => {
   return (
-    <div className="w-screen h-[72px] bg-red-100 bg-custom-dark-200  flex items-center justify-between pr-4">
+    <div className="w-screen h-[72px] bg-red-100 bg-custom-dark-200 flex items-center justify-between pr-4">
       <div className="flex h-full items-center">
         <button className="w-[72px] h-full flex justify-center items-center bg-custom-dark-100 mr-6">
           <img src="src/assets/icon-menu.svg" />

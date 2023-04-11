@@ -3,7 +3,7 @@ import React, { ButtonHTMLAttributes } from "react";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   mode: "primary" | "transparent";
   text?: string;
-  icon?: "save" | "add" | "delete";
+  icon?: "save" | "add" | "delete" | "show" | "hide";
 }
 
 const Button = (props: ButtonProps) => {
@@ -23,12 +23,20 @@ const Button = (props: ButtonProps) => {
       icon = "/src/assets/icon-delete.svg";
       alt = "Delete";
       break;
+    case "show":
+      icon = "/src/assets/icon-show-preview.svg";
+      alt = "Delete";
+      break;
+    case "hide":
+      icon = "/src/assets/icon-hide-preview.svg";
+      alt = "Delete";
+      break;
   }
   return (
     <button
       className={`${
-        props.mode === "primary" ? "bg-custom-orange-400" : "bg-transparent"
-      } text-custom-white-100 text-custom-text-heading-md rounded py-3 px-4 flex items-center justify-center`}
+        props.mode === "primary" ? "bg-custom-orange-400 hover:bg-custom-orange-300" : "bg-transparent"
+      } text-custom-white-100 cursor-pointer text-custom-text-heading-md rounded py-3 px-4 flex items-center justify-center ease-in-out duration-300`}
       {...props}
     >
       {icon && (

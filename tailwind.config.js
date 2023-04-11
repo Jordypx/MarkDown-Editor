@@ -22,7 +22,11 @@ module.exports = {
       'custom-text-body': '13px',
       'custom-text-heading-sm': '14px',
       'custom-text-heading-md': '15px',
-    }
+    },
+    fontFamily: {
+      'roboto': ['Roboto', 'sans-serif'],
+      'roboto-mono': ['"Roboto Mono"', 'monospace'],
+    },
   },
   plugins: [],
 }
