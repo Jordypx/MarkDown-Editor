@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { TextareaHTMLAttributes, useState } from "react";
 import Button from "./Button";
 import ReactMarkdown from "react-markdown";
 
-const Editor = () => {
-  const [text, setText] = useState("");
+const Editor = (props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) => {
+  const startingText = props.defaultValue ? props.defaultValue.toString() : "";
+  const [text, setText] = useState(startingText);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -19,10 +20,9 @@ const Editor = () => {
         </div>
         <textarea
           onChange={handleChange}
-          className="w-full h-full resize-none focus:outline-none p-5 border-r border-r-custom-grey-100 font-roboto-mono font-light text-custom-text-heading-sm leading-[24px]"
-        >
-          # Welcome to Markdown
-        </textarea>
+          className="w-full h-full resize-none focus:outline-none px-5 py-3 border-r border-r-custom-grey-100 font-roboto-mono font-light text-custom-text-heading-sm leading-[24px]"
+          {...props}
+        ></textarea>
       </div>
 
       <div className="w-1/2 h-full">
@@ -30,9 +30,13 @@ const Editor = () => {
           <span className="text-custom-text-heading-sm uppercase tracking-[2px] text-custom-grey-300">
             Preview
           </span>
-          <Button mode="transparent" icon="show"></Button>
+          <Button
+            mode="transparent"
+            icon="show"
+            aria-label="Hide Editor"
+          ></Button>
         </div>
-        <div className="w-full h-full p-5">
+        <div className="w-full h-full p-5 overflow-y-auto md-rendered">
           <ReactMarkdown>{text}</ReactMarkdown>
         </div>
       </div>
