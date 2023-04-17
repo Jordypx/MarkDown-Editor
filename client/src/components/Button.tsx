@@ -1,9 +1,10 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   mode: "primary" | "transparent";
-  text?: string;
+  children?: ReactNode;
   icon?: "save" | "add" | "delete" | "show" | "hide";
+  w?: string;
 }
 
 const Button = (props: ButtonProps) => {
@@ -35,14 +36,18 @@ const Button = (props: ButtonProps) => {
   return (
     <button
       className={`${
-        props.mode === "primary" ? "bg-custom-orange-400 hover:bg-custom-orange-300" : "bg-transparent"
+        props.mode === "primary"
+          ? "bg-custom-orange-400 hover:bg-custom-orange-300"
+          : "bg-transparent"
+      } ${
+        props.w === "full" ? "w-full" : ""
       } text-custom-white-100 cursor-pointer text-custom-text-heading-md rounded py-3 px-4 flex items-center justify-center ease-in-out duration-300`}
       {...props}
     >
       {icon && (
-        <img src={icon} alt={alt} className={props.text ? "mr-2" : ""} />
+        <img src={icon} alt={alt} className={props.children ? "mr-2" : ""} />
       )}
-      {props.text}
+      {props.children}
     </button>
   );
 };
