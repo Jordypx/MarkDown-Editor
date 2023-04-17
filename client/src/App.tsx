@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
 
 const App = () => {
   const [content, setContent] = useState("");
@@ -20,13 +19,10 @@ const App = () => {
   }, [content]);
 
   return (
-    <div className="grid grid-cols-[250px_auto] overflow-hidden">
-      <Sidebar />
-      <div className="w-100">
-        <Header />
-        {content && <Editor defaultValue={content} />}
-      </div>
-    </div>
+    <React.Fragment>
+      <Header />
+      {content && <Editor defaultValue={content} />}
+    </React.Fragment>
   );
 };
 
