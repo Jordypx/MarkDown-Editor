@@ -4,6 +4,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   mode: "primary" | "transparent";
   text?: string;
   icon?: "save" | "add" | "delete" | "show" | "hide";
+  w?: string;
 }
 
 const Button = (props: ButtonProps) => {
