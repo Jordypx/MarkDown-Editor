@@ -1,6 +1,8 @@
-import React from "react";
-
+import { useSelector } from "react-redux";
+import { RootState } from "./../store";
 const FileDetaiil = () => {
+  const title = useSelector((state: RootState) => state.data.title);
+
   return (
     <div className="flex items-center">
       <img src="/src/assets/icon-document.svg" alt="File name" />
@@ -9,7 +11,7 @@ const FileDetaiil = () => {
           Document Name
         </span>
         <span className="text-custom-white-100 custom-text-heading-md block">
-          welcome.md
+          {title}
         </span>
       </div>
     </div>

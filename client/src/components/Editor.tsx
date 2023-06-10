@@ -1,8 +1,12 @@
-import React, { TextareaHTMLAttributes, useState } from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 import ReactMarkdown from "react-markdown";
 
-const Editor = (props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) => {
+interface EditorProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  defaultValue: string;
+}
+const Editor = (props: EditorProps) => {
   const startingText = props.defaultValue ? props.defaultValue.toString() : "";
   const [text, setText] = useState(startingText);
 
