@@ -4,16 +4,23 @@ import Editor from "./components/Editor";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { RootState } from "./store";
-
+import { ContentType } from "./store/data-slice";
 const App = () => {
-  // const [content, setContent] = useState("");
+  const [content, setContent] = useState(Array<ContentType>);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const data = useSelector((state: RootState) => state.data);
   const activeItem = useSelector(
     (state: RootState) => state.current.currentItem
   );
+  useEffect(()=>{
+    setContent(data.filter((item) => item.id === activeItem));
+  },[activeItem])
 
-  const currentItem = data.filter((item) => item.id === activeItem);
+
+  // // console.log(content);
+  // useEffect(() => {
+  //   setContent(data.filter((item) => item.id === activeItem));
+  // }, [activeItem]);
 
   // useEffect(() => {
   //   fetch("/data.json")
@@ -40,7 +47,7 @@ const App = () => {
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         />
-        {currentItem[0] && <Editor defaultValue={currentItem[0].content} />}
+        {content[0] && <Editor value={content[0].content} />}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import { useSelector } from "react-redux";
 import Button from "./Button";
 import FileDetaiil from "./FileDetaiil";
@@ -10,7 +10,6 @@ interface HeaderProps {
 const Header = (props: HeaderProps) => {
   const data = useSelector((state: RootState) => state.data);
   const activeItem = useSelector((state: RootState) => state.current.currentItem);
-
   const currentData = data.filter((item) => item.id === activeItem);
 
   return (
@@ -30,7 +29,7 @@ const Header = (props: HeaderProps) => {
           <img src="/src/assets/logo.svg" alt="Markdown" />
         </a>
         <span className="w-px h-10 bg-custom-grey-400 block mx-6"></span>
-        <FileDetaiil title={currentData[0].title} />
+        <FileDetaiil text="Document Name" title={currentData[0].title} />
       </div>
 
       <div className="flex items-center">

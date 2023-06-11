@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import ReactMarkdown from "react-markdown";
 
 interface EditorProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  defaultValue: string;
+  value: string;
 }
 const Editor = (props: EditorProps) => {
-  const startingText = props.defaultValue ? props.defaultValue.toString() : "";
-  const [text, setText] = useState(startingText);
+  const [text, setText] = useState(props.value);
+
+  useEffect(() => {
+    setText(props.value);
+  }, [props.value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -26,6 +29,7 @@ const Editor = (props: EditorProps) => {
           onChange={handleChange}
           className="w-full h-full resize-none focus:outline-none px-5 py-3 border-r border-r-custom-grey-100 font-roboto-mono font-light text-custom-text-heading-sm leading-[24px]"
           {...props}
+          value={text}
         ></textarea>
       </div>
 

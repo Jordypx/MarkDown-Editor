@@ -1,11 +1,12 @@
 interface FileDetailProps {
   title: string;
-  text: string
+  text: string;
+  onClick?: () => void;
 }
 
-const FileDetaiil = (props: FileDetailProps) => {
+const FileSwitcher = (props: FileDetailProps) => {
   return (
-    <div className="flex items-center">
+    <div onClick={props.onClick} className="flex items-center cursor-pointer">
       <img src="/src/assets/icon-document.svg" alt="File name" />
       <div className="ml-5">
         <span className="text-custom-grey-300 font-extralight text-custom-text-body leading-none">
@@ -19,4 +20,4 @@ const FileDetaiil = (props: FileDetailProps) => {
   );
 };
 
-export default FileDetaiil;
+export default FileSwitcher;
