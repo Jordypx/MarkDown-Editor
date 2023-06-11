@@ -12,12 +12,15 @@
 }
 .md-rendered > * {
   display: block;
-  margin-top: 25px;
-  margin-bottom: 25px;
   margin-left: auto;
   margin-right: auto;
 }
-.md-rendered > *:first-child {
+.md-rendered > div > * {
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.md-rendered > div > *:first-child {
   margin-top: 0px;
 }
 .md-rendered h1 {

@@ -809,13 +809,17 @@ video {
 
 .md-rendered > * {
   display: block;
-  margin-top: 25px;
-  margin-bottom: 25px;
   margin-right: auto;
   margin-left: auto;
 }
 
-.md-rendered > *:first-child {
+.md-rendered > div > * {
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.md-rendered > div > *:first-child {
   margin-top: 0px;
 }
 
