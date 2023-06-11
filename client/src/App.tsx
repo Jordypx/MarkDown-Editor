@@ -8,7 +8,12 @@ import { RootState } from "./store";
 const App = () => {
   // const [content, setContent] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const content = useSelector((state: RootState) => state.data.content);
+  const data = useSelector((state: RootState) => state.data);
+  const activeItem = useSelector(
+    (state: RootState) => state.current.currentItem
+  );
+
+  const currentItem = data.filter((item) => item.id === activeItem);
 
   // useEffect(() => {
   //   fetch("/data.json")
@@ -35,7 +40,7 @@ const App = () => {
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         />
-        {content && <Editor defaultValue={content} />}
+        {currentItem[0] && <Editor defaultValue={currentItem[0].content} />}
       </div>
     </div>
   );

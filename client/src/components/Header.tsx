@@ -1,12 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Button from "./Button";
 import FileDetaiil from "./FileDetaiil";
-
+import { RootState } from "../store";
 interface HeaderProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Header = (props: HeaderProps) => {
+  const data = useSelector((state: RootState) => state.data);
+  const activeItem = useSelector((state: RootState) => state.current.currentItem);
+
+  const currentData = data.filter((item) => item.id === activeItem);
+
   return (
     <div className="w-screen h-[72px] bg-red-100 bg-custom-dark-200 flex items-center justify-between pr-4">
       <div className="flex h-full items-center">
@@ -24,7 +30,7 @@ const Header = (props: HeaderProps) => {
           <img src="/src/assets/logo.svg" alt="Markdown" />
         </a>
         <span className="w-px h-10 bg-custom-grey-400 block mx-6"></span>
-        <FileDetaiil />
+        <FileDetaiil title={currentData[0].title} />
       </div>
 
       <div className="flex items-center">
