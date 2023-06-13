@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface currentItem {
-    currentItem: number
+    currentItem: string
 }
 
 const initialState: currentItem = {
-    currentItem: 1
+    currentItem: '1'
 };
 
 const currentSlice = createSlice({
     name: 'current',
     initialState,
     reducers: {
-        updateCurrentItem(state, action: PayloadAction<number>) {
+        updateCurrentItem(state, action: PayloadAction<string>) {
             state.currentItem = action.payload;
         }
     }

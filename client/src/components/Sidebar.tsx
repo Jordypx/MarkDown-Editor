@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 import Button from "./Button";
 import { RootState } from "../store";
 import FileSwitcher from "./FileSwitcher";
 import { updateCurrentItem } from "../store/active-slice";
+import { addItem } from "../store/data-slice";
 
-function Sidebar() {
+interface SidberProps {
+  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+function Sidebar(props: SidberProps) {
   const data = useSelector((state: RootState) => state.data);
   const activeItem = useSelector(
     (state: RootState) => state.current.currentItem
@@ -13,6 +18,30 @@ function Sidebar() {
   const [currentItem, setCurrentItem] = useState(activeItem);
   const dispatch = useDispatch();
 
+  const newDocumentHandler = () => {
+    // Generate unique ID
+    const newPostId = uuidv4();
+    // Format post date
+    const today = new Date();
+    const formattedDate = [
+      today.getMonth().toString().padStart(2, "0"),
+      today.getDate().toString().padStart(2, "0"),
+      today.getFullYear(),
+    ].join("-");
+    // Dispatch add action
+    dispatch(
+      addItem({
+        id: newPostId,
+        createdAt: formattedDate,
+        title: "new_document.md",
+        content: "",
+      })
+    );
+    dispatch(updateCurrentItem(newPostId));
+    // Close Sidebar
+    props.setIsSidebarOpen(false);
+    // Focus Textarea
+  };
   useEffect(() => {
     dispatch(updateCurrentItem(currentItem));
   }, [currentItem]);
@@ -22,7 +51,7 @@ function Sidebar() {
       <span className="uppercase text-custom-grey-300 text-custom-text-heading-sm block tracking-[2px] mb-6">
         My Documents
       </span>
-      <Button mode="primary" w="full">
+      <Button onClick={() => newDocumentHandler()} mode="primary" w="full">
         + New Document
       </Button>
 

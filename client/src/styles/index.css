@@ -23,6 +23,7 @@
 .md-rendered > div > *:first-child {
   margin-top: 0px;
 }
+
 .md-rendered h1 {
   font-size: 32px;
   font-weight: 700;

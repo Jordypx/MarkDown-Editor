@@ -41,7 +41,7 @@ const App = () => {
         isSidebarOpen ? "grid-cols-[250px_auto]" : ""
       } overflow-hidden`}
     >
-      {isSidebarOpen && <Sidebar />}
+      {isSidebarOpen && <Sidebar setIsSidebarOpen={setIsSidebarOpen} />}
       <div className="w-100">
         <Header
           isSidebarOpen={isSidebarOpen}

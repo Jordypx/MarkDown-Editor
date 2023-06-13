@@ -6,7 +6,10 @@ interface FileDetailProps {
 
 const FileSwitcher = (props: FileDetailProps) => {
   return (
-    <div onClick={props.onClick} className="flex items-center cursor-pointer">
+    <div
+      onClick={props.onClick}
+      className="flex items-center cursor-pointer hover:opacity-70 transition-opacity ease-in-out duration-300"
+    >
       <img src="/src/assets/icon-document.svg" alt="File name" />
       <div className="ml-5">
         <span className="text-custom-grey-300 font-extralight text-custom-text-body leading-none">
