@@ -1,17 +1,51 @@
-import {useState} from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
-import FileDetaiil from "./FileDetaiil";
+import FileDetail from "./FileDetail";
 import { RootState } from "../store";
+import { deleteItem, updateItem } from "../store/data-slice";
+import { updateCurrentItem } from "../store/active-slice";
+
 interface HeaderProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const Header = (props: HeaderProps) => {
-  const data = useSelector((state: RootState) => state.data);
-  const activeItem = useSelector((state: RootState) => state.current.currentItem);
-  const currentData = data.filter((item) => item.id === activeItem);
 
+const Header = (props: HeaderProps) => {
+  const [filename, setFileName] = useState("");
+  const data = useSelector((state: RootState) => state.data);
+  const activeItem = useSelector(
+    (state: RootState) => state.current.currentItem
+  );
+  const currentData = data.filter((item) => item.id === activeItem);
+  const dispatch = useDispatch();
+
+  // Save current item.
+  const saveHandler = () => {
+    const today = new Date();
+    const updatedDate = [
+      today.getMonth().toString().padStart(2, "0"),
+      today.getDate().toString().padStart(2, "0"),
+      today.getFullYear(),
+    ].join("-");
+
+    const updatedData = {
+      id: activeItem,
+      title: filename,
+      content: "",
+      createdAt: updatedDate,
+    };
+    dispatch(updateItem(updatedData));
+  };
+
+  // Delete current item.
+  const deleteHandler = () => {
+    dispatch(deleteItem(activeItem));
+    // Get first item from the array.
+    const newCurrentItemId = data[0].id;
+    // Set last item as the current active item.
+    dispatch(updateCurrentItem(newCurrentItemId));
+  };
   return (
     <div className="w-screen h-[72px] bg-red-100 bg-custom-dark-200 flex items-center justify-between pr-4">
       <div className="flex h-full items-center">
@@ -29,12 +63,21 @@ const Header = (props: HeaderProps) => {
           <img src="/src/assets/logo.svg" alt="Markdown" />
         </a>
         <span className="w-px h-10 bg-custom-grey-400 block mx-6"></span>
-        <FileDetaiil text="Document Name" title={currentData[0].title} />
+        <FileDetail
+          text="Document Name"
+          title={currentData[0].title}
+          onChange={setFileName}
+        />
       </div>
 
       <div className="flex items-center">
-        <Button mode="transparent" icon="delete" className="mr-6" />
-        <Button mode="primary" icon="save">
+        <Button
+          onClick={() => deleteHandler()}
+          mode="transparent"
+          icon="delete"
+          className="mr-6"
+        />
+        <Button onClick={() => saveHandler()} mode="primary" icon="save">
           Save Changes
         </Button>
       </div>

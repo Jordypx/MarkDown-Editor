@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '.';
+
 interface Data {
     id: string,
     createdAt: string,
@@ -29,14 +29,27 @@ const dataSlice = createSlice({
     initialState,
     reducers: {
         addItem(state, action: PayloadAction<Data>) {
-            state.push(action.payload)
+            state.push(action.payload);
         },
-        deleteItem(state, action: PayloadAction<number>) {
-            console.log(state)
+        deleteItem(state, action: PayloadAction<string>) {
+            const id = action.payload;
+            return state.filter((item) => item.id !== id);
+
+        },
+        updateItem(state, action: PayloadAction<Data>) {
+            const id = action.payload.id;
+            state.map((item) => {
+                if (item.id === id) {
+                    item.id = action.payload.id;
+                    item.content = action.payload.content;
+                    item.title = action.payload.title;
+                    item.createdAt = action.payload.createdAt;
+                }
+            });
         }
     }
 });
 
-export const { deleteItem, addItem } = dataSlice.actions;
+export const { deleteItem, addItem, updateItem } = dataSlice.actions;
 export type ContentType = Data;
 export default dataSlice;

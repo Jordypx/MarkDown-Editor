@@ -12,10 +12,9 @@ const App = () => {
   const activeItem = useSelector(
     (state: RootState) => state.current.currentItem
   );
-  useEffect(()=>{
+  useEffect(() => {
     setContent(data.filter((item) => item.id === activeItem));
-  },[activeItem])
-
+  }, [activeItem]);
 
   // // console.log(content);
   // useEffect(() => {
