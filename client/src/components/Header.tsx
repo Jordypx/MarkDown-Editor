@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import FileDetail from "./FileDetail";
@@ -13,13 +13,17 @@ interface HeaderProps {
 }
 
 const Header = (props: HeaderProps) => {
-  const [filename, setFileName] = useState("");
   const data = useSelector((state: RootState) => state.data);
   const activeItem = useSelector(
     (state: RootState) => state.current.currentItem
   );
   const currentData = data.filter((item) => item.id === activeItem);
   const dispatch = useDispatch();
+  const [filename, setFileName] = useState(currentData[0].title);
+  
+  useEffect(() => {
+    setFileName(currentData[0].title);
+  }, [activeItem]);
 
   // Save current item.
   const saveHandler = () => {
@@ -68,7 +72,7 @@ const Header = (props: HeaderProps) => {
         <span className="w-px h-10 bg-custom-grey-400 block mx-6"></span>
         <FileDetail
           text="Document Name"
-          title={currentData[0].title}
+          title={filename}
           onChange={setFileName}
         />
       </div>

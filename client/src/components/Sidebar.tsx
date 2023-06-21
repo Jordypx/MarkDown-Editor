@@ -42,6 +42,8 @@ function Sidebar(props: SidberProps) {
     props.setIsSidebarOpen(false);
     // Focus Textarea
   };
+  
+  // Switch to selected item.
   useEffect(() => {
     dispatch(updateCurrentItem(currentItem));
   }, [currentItem]);
