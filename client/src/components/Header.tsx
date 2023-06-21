@@ -9,6 +9,7 @@ import { updateCurrentItem } from "../store/active-slice";
 interface HeaderProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  editorContent: string;
 }
 
 const Header = (props: HeaderProps) => {
@@ -22,6 +23,7 @@ const Header = (props: HeaderProps) => {
 
   // Save current item.
   const saveHandler = () => {
+    // Calculate the update date
     const today = new Date();
     const updatedDate = [
       today.getMonth().toString().padStart(2, "0"),
@@ -29,10 +31,11 @@ const Header = (props: HeaderProps) => {
       today.getFullYear(),
     ].join("-");
 
+    // Data to update
     const updatedData = {
       id: activeItem,
       title: filename,
-      content: "",
+      content: props.editorContent,
       createdAt: updatedDate,
     };
     dispatch(updateItem(updatedData));

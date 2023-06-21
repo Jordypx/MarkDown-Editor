@@ -8,6 +8,7 @@ import { ContentType } from "./store/data-slice";
 const App = () => {
   const [content, setContent] = useState(Array<ContentType>);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [editorContent, setEditiorContent] = useState("");
   const data = useSelector((state: RootState) => state.data);
   const activeItem = useSelector(
     (state: RootState) => state.current.currentItem
@@ -45,8 +46,9 @@ const App = () => {
         <Header
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
+          editorContent={editorContent}
         />
-        {content[0] && <Editor value={content[0].content} />}
+        {content[0] && <Editor value={content[0].content} setEditiorContent={setEditiorContent} />}
       </div>
     </div>
   );

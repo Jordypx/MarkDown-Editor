@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, Dispatch, SetStateAction } from "react";
 import Button from "./Button";
 import ReactMarkdown from "react-markdown";
 
 interface EditorProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   value: string;
+  setEditiorContent: Dispatch<SetStateAction<string>>;
 }
 const Editor = (props: EditorProps) => {
   const [text, setText] = useState(props.value);
@@ -16,6 +17,7 @@ const Editor = (props: EditorProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
+    props.setEditiorContent(e.target.value);
   };
 
   return (
@@ -49,7 +51,11 @@ const Editor = (props: EditorProps) => {
           ></Button>
         </div>
         <div className="w-full h-full p-5 overflow-y-auto md-rendered">
-          <div className={`${isFullWidthPrevieOn ? "w-1/2 mx-auto" : "w-full"} h-auto`}>
+          <div
+            className={`${
+              isFullWidthPrevieOn ? "w-1/2 mx-auto" : "w-full"
+            } h-auto`}
+          >
             <ReactMarkdown>{text}</ReactMarkdown>
           </div>
         </div>
