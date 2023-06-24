@@ -22,10 +22,12 @@ module.exports = {
       'custom-text-body': '13px',
       'custom-text-heading-sm': '14px',
       'custom-text-heading-md': '15px',
+      'custom-text-heading-dialog': '20px',
     },
     fontFamily: {
       'roboto': ['Roboto', 'sans-serif'],
       'roboto-mono': ['"Roboto Mono"', 'monospace'],
+      'roboto-slab': ['"Roboto Slab"', 'serif'],
     },
   },
   plugins: [],
