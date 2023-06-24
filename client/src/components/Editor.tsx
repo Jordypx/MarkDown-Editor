@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 interface EditorProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   value: string;
-  setEditiorContent: Dispatch<SetStateAction<string>>;
+  setEditiorContent: (item: string) => void;
 }
 const Editor = (props: EditorProps) => {
   const [text, setText] = useState(props.value);
@@ -15,9 +15,9 @@ const Editor = (props: EditorProps) => {
     setText(props.value);
   }, [props.value]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
-    props.setEditiorContent(e.target.value);
+  const handleChange = (text: string) => {
+    setText(text);
+    props.setEditiorContent(text);
   };
 
   return (
@@ -29,9 +29,9 @@ const Editor = (props: EditorProps) => {
               Markdown
             </span>
           </div>
-          <textarea
-            onChange={handleChange}
-            className="w-full h-full resize-none focus:outline-none px-5 py-3 border-r border-r-custom-grey-100 font-roboto-mono font-light text-custom-text-heading-sm leading-[24px]"
+          <textarea 
+            onChange={(e) => handleChange(e.target.value)}
+            className=" w-full h-full resize-none focus:outline-none px-5 py-3 border-r border-r-custom-grey-100 font-roboto-mono font-light text-custom-text-heading-sm leading-[24px] dark:bg-custom-dark-400 dark:text-custom-grey-100"
             // ref={editorRef}
             {...props}
             value={text}

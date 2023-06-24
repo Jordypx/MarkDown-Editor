@@ -20,7 +20,7 @@ const Header = (props: HeaderProps) => {
   const currentData = data.filter((item) => item.id === activeItem);
   const dispatch = useDispatch();
   const [filename, setFileName] = useState(currentData[0].title);
-  
+
   useEffect(() => {
     setFileName(currentData[0].title);
   }, [activeItem]);

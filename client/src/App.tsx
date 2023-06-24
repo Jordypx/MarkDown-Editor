@@ -10,6 +10,8 @@ const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [editorContent, setEditiorContent] = useState("");
   const data = useSelector((state: RootState) => state.data);
+  const theme = useSelector((state: RootState) => state.theme.darkMode);
+
   const activeItem = useSelector(
     (state: RootState) => state.current.currentItem
   );
@@ -37,8 +39,8 @@ const App = () => {
 
   return (
     <div
-      className={`grid ${
-        isSidebarOpen ? "grid-cols-[250px_auto]" : ""
+      className={`grid ${isSidebarOpen ? "grid-cols-[250px_auto]" : ""} ${
+        theme ? "" : "dark"
       } overflow-hidden`}
     >
       {isSidebarOpen && <Sidebar setIsSidebarOpen={setIsSidebarOpen} />}
@@ -48,7 +50,12 @@ const App = () => {
           setIsSidebarOpen={setIsSidebarOpen}
           editorContent={editorContent}
         />
-        {content[0] && <Editor value={content[0].content} setEditiorContent={setEditiorContent} />}
+        {content[0] && (
+          <Editor
+            value={content[0].content}
+            setEditiorContent={setEditiorContent}
+          />
+        )}
       </div>
     </div>
   );

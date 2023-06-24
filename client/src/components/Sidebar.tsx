@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import Button from "./Button";
@@ -7,15 +6,17 @@ import FileSwitcher from "./FileSwitcher";
 import { updateCurrentItem } from "../store/active-slice";
 import { addItem } from "../store/data-slice";
 
+import Switch from "./Switch";
+
 interface SidberProps {
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 function Sidebar(props: SidberProps) {
   const data = useSelector((state: RootState) => state.data);
-  const activeItem = useSelector(
-    (state: RootState) => state.current.currentItem
-  );
-  const [currentItem, setCurrentItem] = useState(activeItem);
+  // const activeItem = useSelector(
+  //   (state: RootState) => state.current.currentItem
+  // );
+
   const dispatch = useDispatch();
 
   const newDocumentHandler = () => {
@@ -42,11 +43,6 @@ function Sidebar(props: SidberProps) {
     props.setIsSidebarOpen(false);
     // Focus Textarea
   };
-  
-  // Switch to selected item.
-  useEffect(() => {
-    dispatch(updateCurrentItem(currentItem));
-  }, [currentItem]);
 
   return (
     <div className="bg-custom-dark-300 w-[250px] h-full overflow-x-hidden overflow-y-auto p-5 ease-in-out duration-300">
@@ -56,16 +52,30 @@ function Sidebar(props: SidberProps) {
       <Button onClick={() => newDocumentHandler()} mode="primary" w="full">
         + New Document
       </Button>
-
-      {data.map((item) => (
-        <div className="mt-4" key={item.id}>
-          <FileSwitcher
-            onClick={() => setCurrentItem(item.id)}
-            text={item.createdAt}
-            title={item.title}
-          />
-        </div>
-      ))}
+      <div className="overflow-y-auto h-[calc(100vh-160px)]">
+        {data.map((item) => (
+          <div className="mt-4" key={item.id}>
+            <FileSwitcher
+              onClick={() => dispatch(updateCurrentItem(item.id))}
+              text={item.createdAt}
+              title={item.title}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center">
+        <img
+          src="src/assets/icon-dark-mode.svg"
+          className="me-2"
+          alt="Night Mode"
+        />
+        <Switch />
+        <img
+          src="src/assets/icon-light-mode.svg"
+          className="ms-2"
+          alt="Light Mode"
+        />
+      </div>
     </div>
   );
 }
