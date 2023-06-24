@@ -64,17 +64,7 @@ function Sidebar(props: SidberProps) {
         ))}
       </div>
       <div className="flex items-center">
-        <img
-          src="src/assets/icon-dark-mode.svg"
-          className="me-2"
-          alt="Night Mode"
-        />
         <Switch />
-        <img
-          src="src/assets/icon-light-mode.svg"
-          className="ms-2"
-          alt="Light Mode"
-        />
       </div>
     </div>
   );

@@ -24,14 +24,14 @@ const Editor = (props: EditorProps) => {
     <div className="flex items-stretch h-[calc(100vh_-_72px)]">
       {!isFullWidthPrevieOn && (
         <div className="w-1/2 h-full">
-          <div className="h-[42px] bg-custom-white-200 flex items-center border-r border-r-custom-grey-100 px-5">
-            <span className="text-custom-text-heading-sm uppercase tracking-[2px] text-custom-grey-300">
+          <div className="h-[42px] bg-custom-white-200 dark:bg-custom-dark-300 flex items-center border-r border-r-custom-grey-100 dark:border-r-custom-grey-400 px-5">
+            <span className="text-custom-text-heading-sm uppercase tracking-[2px] text-custom-grey-300 dark:text-custom-grey-200">
               Markdown
             </span>
           </div>
           <textarea 
             onChange={(e) => handleChange(e.target.value)}
-            className=" w-full h-full resize-none focus:outline-none px-5 py-3 border-r border-r-custom-grey-100 font-roboto-mono font-light text-custom-text-heading-sm leading-[24px] dark:bg-custom-dark-400 dark:text-custom-grey-100"
+            className=" w-full h-full resize-none focus:outline-none px-5 py-3 border-r border-r-custom-grey-100 dark:border-r-custom-grey-400 font-roboto-mono font-light text-custom-text-heading-sm leading-[24px] dark:bg-custom-dark-400 dark:text-custom-grey-200"
             // ref={editorRef}
             {...props}
             value={text}
@@ -39,8 +39,8 @@ const Editor = (props: EditorProps) => {
         </div>
       )}
       <div className={`${isFullWidthPrevieOn ? "w-full" : "w-1/2"} h-auto`}>
-        <div className="h-[42px] bg-custom-white-200 flex items-center justify-between px-5">
-          <span className="text-custom-text-heading-sm uppercase tracking-[2px] text-custom-grey-300">
+        <div className="h-[42px] bg-custom-white-200 dark:bg-custom-dark-300 flex items-center justify-between  px-5">
+          <span className="text-custom-text-heading-sm uppercase tracking-[2px] text-custom-grey-300  dark:text-custom-grey-200">
             Preview
           </span>
           <Button
@@ -50,7 +50,7 @@ const Editor = (props: EditorProps) => {
             aria-label="Hide Editor"
           ></Button>
         </div>
-        <div className="w-full h-full p-5 overflow-y-auto md-rendered">
+        <div className="w-full h-full p-5 overflow-y-auto md-rendered dark:bg-custom-dark-400 dark:text-custom-grey-200">
           <div
             className={`${
               isFullWidthPrevieOn ? "w-1/2 mx-auto" : "w-full"

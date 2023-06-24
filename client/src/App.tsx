@@ -40,7 +40,7 @@ const App = () => {
   return (
     <div
       className={`grid ${isSidebarOpen ? "grid-cols-[250px_auto]" : ""} ${
-        theme ? "" : "dark"
+        theme ? "dark" : ""
       } overflow-hidden`}
     >
       {isSidebarOpen && <Sidebar setIsSidebarOpen={setIsSidebarOpen} />}
