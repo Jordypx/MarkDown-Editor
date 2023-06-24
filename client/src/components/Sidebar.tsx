@@ -9,6 +9,7 @@ import { addItem } from "../store/data-slice";
 import Switch from "./Switch";
 
 interface SidberProps {
+  isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 function Sidebar(props: SidberProps) {
@@ -45,7 +46,11 @@ function Sidebar(props: SidberProps) {
   };
 
   return (
-    <div className="bg-custom-dark-300 w-[250px] h-full overflow-x-hidden overflow-y-auto p-5 ease-in-out duration-300">
+    <div
+      className={`bg-custom-dark-300 relative ${
+        props.isSidebarOpen ? "left-0" : "left-[-250px]" 
+      } w-[250px] h-full overflow-x-hidden overflow-y-auto p-5 ease-in-out duration-300 flex-shrink-0`}
+    >
       <span className="uppercase text-custom-grey-300 text-custom-text-heading-sm block tracking-[2px] mb-6">
         My Documents
       </span>

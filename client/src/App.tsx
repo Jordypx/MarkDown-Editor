@@ -39,12 +39,15 @@ const App = () => {
 
   return (
     <div
-      className={`grid ${isSidebarOpen ? "grid-cols-[250px_auto]" : ""} ${
-        theme ? "dark" : ""
-      } overflow-hidden`}
+      className={`grid  ${
+        isSidebarOpen ? "grid-cols-[250px_auto]" : "grid-cols-[0_100%]"
+      } ${theme ? "dark" : ""} overflow-hidden ease-in-out duration-300`}
     >
-      {isSidebarOpen && <Sidebar setIsSidebarOpen={setIsSidebarOpen} />}
-      <div className="w-100">
+      <Sidebar
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
+      <div className={`relative w-100`}>
         <Header
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
