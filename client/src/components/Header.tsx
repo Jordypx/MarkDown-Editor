@@ -56,7 +56,7 @@ const Header = (props: HeaderProps) => {
     dispatch(updateCurrentItem(newCurrentItemId));
   };
 
-  
+
   return (
     <div className="w-screen h-[72px] bg-red-100 bg-custom-dark-200 flex items-center justify-between pr-4">
       <div className="flex h-full items-center">
@@ -70,10 +70,10 @@ const Header = (props: HeaderProps) => {
             <img src="src/assets/icon-close.svg" />
           )}
         </button>
-        <a href="/">
+        <a href="/" className="lg:hidden">
           <img src="/src/assets/logo.svg" alt="Markdown" />
         </a>
-        <span className="w-px h-10 bg-custom-grey-400 block mx-6"></span>
+        <span className="w-px h-10 bg-custom-grey-400 block mx-6 lg:hidden"></span>
         <FileDetail
           text="Document Name"
           title={filename}

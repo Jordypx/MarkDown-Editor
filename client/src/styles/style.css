@@ -1254,3 +1254,49 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+
+@media (max-width: 1024px) {
+  .lg\:block {
+    display: block;
+  }
+
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:w-11\/12 {
+    width: 91.666667%;
+  }
+}
+
+@media (max-width: 768px) {
+  .md\:block {
+    display: block;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:w-11\/12 {
+    width: 91.666667%;
+  }
+}
+
+@media (max-width: 640px) {
+  .sm\:mr-0 {
+    margin-right: 0px;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+
+  .sm\:w-24 {
+    width: 6rem;
+  }
+
+  .sm\:w-full {
+    width: 100%;
+  }
+}

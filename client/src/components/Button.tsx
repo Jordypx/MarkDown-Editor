@@ -45,9 +45,9 @@ const Button = (props: ButtonProps) => {
       {...props}
     >
       {icon && (
-        <img src={icon} alt={alt} className={props.children ? "mr-2" : ""} />
+        <img src={icon} alt={alt} className={props.children ? "mr-2 sm:mr-0" : ""} />
       )}
-      {props.children}
+      <span className={`${icon ? "sm:hidden" : ""}`}>{props.children}</span>
     </button>
   );
 };

@@ -48,9 +48,13 @@ function Sidebar(props: SidberProps) {
   return (
     <div
       className={`bg-custom-dark-300 relative ${
-        props.isSidebarOpen ? "left-0" : "left-[-250px]" 
+        props.isSidebarOpen ? "left-0" : "left-[-250px]"
       } w-[250px] h-full overflow-x-hidden overflow-y-auto p-5 ease-in-out duration-300 flex-shrink-0`}
     >
+      <a href="/" className="lg:block hidden mb-6">
+        <img src="/src/assets/logo.svg" alt="Markdown" />
+      </a>
+
       <span className="uppercase text-custom-grey-300 text-custom-text-heading-sm block tracking-[2px] mb-6">
         My Documents
       </span>
