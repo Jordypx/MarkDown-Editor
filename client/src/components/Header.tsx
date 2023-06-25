@@ -5,6 +5,7 @@ import FileDetail from "./FileDetail";
 import { RootState } from "../store";
 import { deleteItem, updateItem } from "../store/data-slice";
 import { updateCurrentItem } from "../store/active-slice";
+import Dialog from "./Dialog";
 
 interface HeaderProps {
   isSidebarOpen: boolean;
@@ -20,6 +21,7 @@ const Header = (props: HeaderProps) => {
   const currentData = data.filter((item) => item.id === activeItem);
   const dispatch = useDispatch();
   const [filename, setFileName] = useState(currentData[0].title);
+  const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
     setFileName(currentData[0].title);
@@ -53,6 +55,8 @@ const Header = (props: HeaderProps) => {
     // Set last item as the current active item.
     dispatch(updateCurrentItem(newCurrentItemId));
   };
+
+  
   return (
     <div className="w-screen h-[72px] bg-red-100 bg-custom-dark-200 flex items-center justify-between pr-4">
       <div className="flex h-full items-center">
@@ -79,7 +83,7 @@ const Header = (props: HeaderProps) => {
 
       <div className="flex items-center">
         <Button
-          onClick={() => deleteHandler()}
+          onClick={() => setShowDialog(!showDialog)}
           mode="transparent"
           icon="delete"
           className="mr-6"
@@ -88,6 +92,8 @@ const Header = (props: HeaderProps) => {
           Save Changes
         </Button>
       </div>
+
+      {showDialog && <Dialog dispatchAction={deleteHandler} setShowDialog={setShowDialog} />}
     </div>
   );
 };

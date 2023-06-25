@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import Dialog from "./components/Dialog";
 import { RootState } from "./store";
 import { ContentType } from "./store/data-slice";
+
 const App = () => {
   const [content, setContent] = useState(Array<ContentType>);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -61,8 +61,6 @@ const App = () => {
           />
         )}
       </div>
-
-      <Dialog />
     </div>
   );
 };
