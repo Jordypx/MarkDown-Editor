@@ -1269,20 +1269,6 @@ video {
   }
 }
 
-@media (max-width: 768px) {
-  .md\:block {
-    display: block;
-  }
-
-  .md\:hidden {
-    display: none;
-  }
-
-  .md\:w-11\/12 {
-    width: 91.666667%;
-  }
-}
-
 @media (max-width: 640px) {
   .sm\:mr-0 {
     margin-right: 0px;
@@ -1298,5 +1284,13 @@ video {
 
   .sm\:w-full {
     width: 100%;
+  }
+
+  .sm\:w-\[80\%\] {
+    width: 80%;
+  }
+
+  .sm\:w-\[90\%\] {
+    width: 90%;
   }
 }

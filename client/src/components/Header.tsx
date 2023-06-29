@@ -18,13 +18,14 @@ const Header = (props: HeaderProps) => {
   const activeItem = useSelector(
     (state: RootState) => state.current.currentItem
   );
-  const currentData = data.filter((item) => item.id === activeItem);
+  const activeData = data.filter((item) => item.id === activeItem);
+
   const dispatch = useDispatch();
-  const [filename, setFileName] = useState(currentData[0].title);
+  const [filename, setFileName] = useState(activeData[0].title);
   const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
-    setFileName(currentData[0].title);
+    setFileName(activeData[0].title);
   }, [activeItem]);
 
   // Save current item.
@@ -55,7 +56,6 @@ const Header = (props: HeaderProps) => {
     // Set last item as the current active item.
     dispatch(updateCurrentItem(newCurrentItemId));
   };
-
 
   return (
     <div className="w-screen h-[72px] bg-red-100 bg-custom-dark-200 flex items-center justify-between pr-4">
@@ -93,7 +93,9 @@ const Header = (props: HeaderProps) => {
         </Button>
       </div>
 
-      {showDialog && <Dialog dispatchAction={deleteHandler} setShowDialog={setShowDialog} />}
+      {showDialog && (
+        <Dialog dispatchAction={deleteHandler} setShowDialog={setShowDialog} />
+      )}
     </div>
   );
 };

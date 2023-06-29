@@ -34,7 +34,7 @@ const ModalDialog = (props: ModalDialogProps) => {
   };
   return (
     <div className={`${darkMode ? "dark" : ""}`}>
-      <div className="bg-custom-white-100 dark:bg-custom-dark-300 antialiased rounded-[4px] px-6 py-7 z-20  w-[380px] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
+      <div className="bg-custom-white-100 dark:bg-custom-dark-300 antialiased rounded-[4px] px-6 py-7 z-20  w-[380px] sm:w-[90%] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
         <h2 className="text-custom-dark-100 dark:text-custom-white-100 text-custom-text-heading-dialog font-roboto-slab font-bold">
           Delete this document?
         </h2>

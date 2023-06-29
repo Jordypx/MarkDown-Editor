@@ -4,20 +4,20 @@ import Editor from "./components/Editor";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { RootState } from "./store";
-import { ContentType } from "./store/data-slice";
 
 const App = () => {
-  const [content, setContent] = useState(Array<ContentType>);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [editorContent, setEditiorContent] = useState("");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const data = useSelector((state: RootState) => state.data);
   const theme = useSelector((state: RootState) => state.theme.darkMode);
 
   const activeItem = useSelector(
     (state: RootState) => state.current.currentItem
   );
+
   useEffect(() => {
-    setContent(data.filter((item) => item.id === activeItem));
+    const activeData = data.filter((item) => item.id === activeItem);
+    setEditiorContent(activeData[0].content);
   }, [activeItem]);
 
   // // console.log(content);
@@ -54,12 +54,8 @@ const App = () => {
           setIsSidebarOpen={setIsSidebarOpen}
           editorContent={editorContent}
         />
-        {content[0] && (
-          <Editor
-            value={content[0].content}
-            setEditiorContent={setEditiorContent}
-          />
-        )}
+
+        <Editor value={editorContent} setEditiorContent={setEditiorContent} />
       </div>
     </div>
   );
