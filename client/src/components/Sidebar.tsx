@@ -5,7 +5,7 @@ import { RootState } from "../store";
 import FileSwitcher from "./FileSwitcher";
 import { updateCurrentItem } from "../store/active-slice";
 import { addItem } from "../store/data-slice";
-
+import { getCreateDate } from "../helpers/utility";
 import Switch from "./Switch";
 
 interface SidberProps {
@@ -14,27 +14,18 @@ interface SidberProps {
 }
 function Sidebar(props: SidberProps) {
   const data = useSelector((state: RootState) => state.data);
-  // const activeItem = useSelector(
-  //   (state: RootState) => state.current.currentItem
-  // );
 
   const dispatch = useDispatch();
 
   const newDocumentHandler = () => {
     // Generate unique ID
     const newPostId = uuidv4();
-    // Format post date
-    const today = new Date();
-    const formattedDate = [
-      today.getMonth().toString().padStart(2, "0"),
-      today.getDate().toString().padStart(2, "0"),
-      today.getFullYear(),
-    ].join("-");
+    const postDate = getCreateDate();
     // Dispatch add action
     dispatch(
       addItem({
         id: newPostId,
-        createdAt: formattedDate,
+        createdAt: postDate,
         title: "new_document.md",
         content: "",
       })
@@ -42,7 +33,6 @@ function Sidebar(props: SidberProps) {
     dispatch(updateCurrentItem(newPostId));
     // Close Sidebar
     props.setIsSidebarOpen(false);
-    // Focus Textarea
   };
 
   return (

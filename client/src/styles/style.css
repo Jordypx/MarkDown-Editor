@@ -1282,15 +1282,11 @@ video {
     width: 6rem;
   }
 
-  .sm\:w-full {
-    width: 100%;
-  }
-
-  .sm\:w-\[80\%\] {
-    width: 80%;
-  }
-
   .sm\:w-\[90\%\] {
     width: 90%;
+  }
+
+  .sm\:w-full {
+    width: 100%;
   }
 }

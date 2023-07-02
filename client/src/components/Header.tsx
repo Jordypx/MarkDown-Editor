@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+import { RootState } from "../store";
+import { addItem, deleteItem, updateItem } from "../store/data-slice";
+import { updateCurrentItem } from "../store/active-slice";
+import { getCreateDate } from "../helpers/utility";
 import Button from "./Button";
 import FileDetail from "./FileDetail";
-import { RootState } from "../store";
-import { deleteItem, updateItem } from "../store/data-slice";
-import { updateCurrentItem } from "../store/active-slice";
 import Dialog from "./Dialog";
-
 interface HeaderProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,12 +16,22 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
   const data = useSelector((state: RootState) => state.data);
+  const dispatch = useDispatch();
+
+  const [deleted, setDeleted] = useState(false);
+
+  if (deleted) {
+    dispatch(updateCurrentItem(data[data.length - 1].id));
+    setDeleted(!deleted);
+  }
+
+
+
   const activeItem = useSelector(
     (state: RootState) => state.current.currentItem
   );
   const activeData = data.filter((item) => item.id === activeItem);
 
-  const dispatch = useDispatch();
   const [filename, setFileName] = useState(activeData[0].title);
   const [showDialog, setShowDialog] = useState(false);
 
@@ -30,14 +41,8 @@ const Header = (props: HeaderProps) => {
 
   // Save current item.
   const saveHandler = () => {
-    // Calculate the update date
-    const today = new Date();
-    const updatedDate = [
-      today.getMonth().toString().padStart(2, "0"),
-      today.getDate().toString().padStart(2, "0"),
-      today.getFullYear(),
-    ].join("-");
-
+    // Get the update date
+    const updatedDate = getCreateDate();
     // Data to update
     const updatedData = {
       id: activeItem,
@@ -50,11 +55,26 @@ const Header = (props: HeaderProps) => {
 
   // Delete current item.
   const deleteHandler = () => {
-    dispatch(deleteItem(activeItem));
-    // Get first item from the array.
-    const newCurrentItemId = data[0].id;
-    // Set last item as the current active item.
-    dispatch(updateCurrentItem(newCurrentItemId));
+    if (data.length !== 1) {
+      // Get first item from the array.
+      dispatch(deleteItem(activeItem));
+    } else {
+      // Generate unique ID
+      const newPostId = uuidv4();
+      const postDate = getCreateDate();
+      // Dispatch add action (Add new document)
+      dispatch(
+        addItem({
+          id: newPostId,
+          createdAt: postDate,
+          title: "new_document.md",
+          content: "",
+        })
+      );
+      dispatch(deleteItem(activeItem));
+      dispatch(updateCurrentItem(newPostId));
+    }
+    setDeleted(true);
   };
 
   return (
