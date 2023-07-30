@@ -43,10 +43,17 @@ const Header = (props: HeaderProps) => {
   const saveHandler = () => {
     // Get the update date
     const updatedDate = getCreateDate();
+    // Format file name
+    let saveFilename = filename;
+    const filenameParts = saveFilename.toLowerCase().split(".");
+    if (filenameParts[filenameParts.length - 1] !== "md") {
+      saveFilename += ".md";
+      setFileName(saveFilename);
+    }
     // Data to update
     const updatedData = {
       id: activeItem,
-      title: filename,
+      title: saveFilename,
       content: props.editorContent,
       createdAt: updatedDate,
     };
@@ -57,8 +64,12 @@ const Header = (props: HeaderProps) => {
   const deleteHandler = () => {
     // setDeleted(true);
     if (data.length !== 1) {
-      const deletedDataCopy = [...data].filter((item) => item.id !== activeItem);
-      const updatedCurrentId = deletedDataCopy[0].id;
+      // Creates a copy of the actual data store and filter out the item that has the same id as the activeItem
+      const deletedDataCopy = [...data].filter(
+        (item) => item.id !== activeItem
+      );
+      // Selects the id of the fist item in the deleted array and set it as the active item.
+      const updatedCurrentId = deletedDataCopy[deletedDataCopy.length - 1].id;
 
       dispatch(deleteItem(activeItem));
       dispatch(updateCurrentItem(updatedCurrentId));
