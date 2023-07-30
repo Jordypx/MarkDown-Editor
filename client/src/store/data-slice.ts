@@ -34,7 +34,6 @@ const dataSlice = createSlice({
         deleteItem(state, action: PayloadAction<string>) {
             const id = action.payload;
             return state.filter((item) => item.id !== id);
-
         },
         updateItem(state, action: PayloadAction<Data>) {
             const id = action.payload.id;

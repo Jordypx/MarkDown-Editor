@@ -18,20 +18,20 @@ const Header = (props: HeaderProps) => {
   const data = useSelector((state: RootState) => state.data);
   const dispatch = useDispatch();
 
-  const [deleted, setDeleted] = useState(false);
+  // const [deleted, setDeleted] = useState(false);
 
-  if (deleted) {
-    dispatch(updateCurrentItem(data[data.length - 1].id));
-    setDeleted(!deleted);
-  }
-
-
+  // useEffect(() => {
+  //   if (deleted) {
+  //     dispatch(updateCurrentItem(data[data.length - 1].id));
+  //     setDeleted(!deleted);
+  //   }
+  // }, []);
 
   const activeItem = useSelector(
     (state: RootState) => state.current.currentItem
   );
-  const activeData = data.filter((item) => item.id === activeItem);
 
+  const activeData = data.filter((item) => item.id === activeItem);
   const [filename, setFileName] = useState(activeData[0].title);
   const [showDialog, setShowDialog] = useState(false);
 
@@ -55,9 +55,13 @@ const Header = (props: HeaderProps) => {
 
   // Delete current item.
   const deleteHandler = () => {
+    // setDeleted(true);
     if (data.length !== 1) {
-      // Get first item from the array.
+      const deletedDataCopy = [...data].filter((item) => item.id !== activeItem);
+      const updatedCurrentId = deletedDataCopy[0].id;
+
       dispatch(deleteItem(activeItem));
+      dispatch(updateCurrentItem(updatedCurrentId));
     } else {
       // Generate unique ID
       const newPostId = uuidv4();
@@ -74,7 +78,6 @@ const Header = (props: HeaderProps) => {
       dispatch(deleteItem(activeItem));
       dispatch(updateCurrentItem(newPostId));
     }
-    setDeleted(true);
   };
 
   return (
