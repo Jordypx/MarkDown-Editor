@@ -3,7 +3,18 @@ module.exports = {
   content: ["./client/src/**/*.{html,js,jsx,ts,tsx}"],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'fade': 'fadeInOut 2s ease-in-out forwards'
+      },
+      keyframes: {
+        fadeInOut: {
+          '0%, 100%': {opacity: 0},
+          '25%': {opacity: 1},
+          '75%': {opacity: 1},
+        }
+      }
+    },
     colors: {
       "custom-dark-400": "#151619",
       "custom-dark-300": "#1D1F22",

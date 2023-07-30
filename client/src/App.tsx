@@ -20,24 +20,6 @@ const App = () => {
     setEditiorContent(activeData[0].content);
   }, [activeItem]);
 
-  // // console.log(content);
-  // useEffect(() => {
-  //   setContent(data.filter((item) => item.id === activeItem));
-  // }, [activeItem]);
-
-  // useEffect(() => {
-  //   fetch("/data.json")
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setContent(data[data.length - 1].content);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Something went wrong" + err);
-  //     });
-  // }, [content]);
-
   return (
     <div
       className={`grid  ${
@@ -48,14 +30,14 @@ const App = () => {
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />
-      <div className={`relative w-100`}>
+      <div className={`relative w-100 h-[100vh]`}>
         <Header
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
           editorContent={editorContent}
         />
 
-        <Editor value={editorContent} setEditiorContent={setEditiorContent} />
+        <Editor value={editorContent}  isSidebarOpen={isSidebarOpen} setEditiorContent={setEditiorContent} />
       </div>
     </div>
   );
