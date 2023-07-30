@@ -100,13 +100,13 @@ const Header = (props: HeaderProps) => {
             className="w-[72px] h-full flex justify-center items-center bg-custom-dark-100 mr-6"
           >
             {!props.isSidebarOpen ? (
-              <img src="src/assets/icon-menu.svg" />
+              <img src="/icons/icon-menu.svg" />
             ) : (
-              <img src="src/assets/icon-close.svg" />
+              <img src="/icons/icon-close.svg" />
             )}
           </button>
           <a href="/" className="lg:hidden">
-            <img src="/src/assets/logo.svg" alt="Markdown" />
+            <img src="icons/logo.svg" alt="Markdown" />
           </a>
           <span className="w-px h-10 bg-custom-grey-400 block mx-6 lg:hidden"></span>
           <FileDetail

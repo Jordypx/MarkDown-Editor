@@ -13,23 +13,23 @@ const Button = (props: ButtonProps) => {
 
   switch (props.icon) {
     case "save":
-      icon = "/src/assets/icon-save.svg";
+      icon = "/icons/icon-save.svg";
       alt = "Save changes";
       break;
     case "add":
-      icon = "/src/assets/icon-save.svg";
+      icon = "/icons/icon-save.svg";
       alt = "Add new";
       break;
     case "delete":
-      icon = "/src/assets/icon-delete.svg";
+      icon = "/icons/icon-delete.svg";
       alt = "Delete";
       break;
     case "show":
-      icon = "/src/assets/icon-show-preview.svg";
+      icon = "/icons/icon-show-preview.svg";
       alt = "Delete";
       break;
     case "hide":
-      icon = "/src/assets/icon-hide-preview.svg";
+      icon = "/icons/icon-hide-preview.svg";
       alt = "Delete";
       break;
   }
