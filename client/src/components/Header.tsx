@@ -98,11 +98,12 @@ const Header = (props: HeaderProps) => {
           <button
             onClick={() => props.setIsSidebarOpen(!props.isSidebarOpen)}
             className="w-[72px] h-full flex justify-center items-center bg-custom-dark-100 mr-6"
+            aria-label="Toggle Menu"
           >
             {!props.isSidebarOpen ? (
-              <img src="/icons/icon-menu.svg" />
+              <img src="/icons/icon-menu.svg" alt="Open Menu" />
             ) : (
-              <img src="/icons/icon-close.svg" />
+              <img src="/icons/icon-close.svg" alt="Close Menu" />
             )}
           </button>
           <a href="/" className="lg:hidden">

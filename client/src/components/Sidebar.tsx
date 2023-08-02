@@ -51,7 +51,7 @@ function Sidebar(props: SidberProps) {
       <Button onClick={() => newDocumentHandler()} mode="primary" w="full">
         + New Document
       </Button>
-      <div className="overflow-y-auto h-[calc(100vh-160px)]">
+      <div className="overflow-y-auto h-[calc(100vh-160px)] sm:h-[calc(100vh-200px)]">
         {data.map((item) => (
           <div className="mt-4" key={item.id}>
             <FileSwitcher

@@ -1365,6 +1365,14 @@ body{
     display: none;
   }
 
+  .sm\:h-\[calc\(100vh-220px\)\] {
+    height: calc(100vh - 220px);
+  }
+
+  .sm\:h-\[calc\(100vh-200px\)\] {
+    height: calc(100vh - 200px);
+  }
+
   .sm\:w-24 {
     width: 6rem;
   }
