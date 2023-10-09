@@ -1,18 +1,5 @@
-# Frontend Mentor - In-browser markdown editor solution
+# Jordans - In-browser markdown editor solution
 
-This is a solution to the [In-browser markdown editor challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/inbrowser-markdown-editor-r16TrrQX9). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
-
-## Table of contents
-
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-- [Author](#author)
 
 ## Overview
 
@@ -36,7 +23,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [GitHub](https://github.com/arjunkdot/in-browser-markdown-editor)
-- Live Site URL: [Live Demo](https://markdown-arjunkdot.netlify.app/)
+- Live Site URL: [Live Demo](https://markdown-editor-lsqj.onrender.com)
 
 ## My process
 
@@ -57,8 +44,4 @@ This was my first-ever introduction to TypeScript. Even though I struggled somet
 I started this out in hopes of building a full-stack application, but since I was building this between the free hours and on weekends while working full-time it took me more time than I thought it'd take initially. I'm also kinda bored working on this project for a while now and have been trying to move on to something else. I hope I'll get back to this someday. I also have plans to write some tests (probably using Vitest & RTL) to see how it holds out. 
 
 
-## Author
-
-- Frontend Mentor - [arjunkdot](https://www.frontendmentor.io/profile/arjunkdot)
-- Twitter - [@arjunkdot](https://www.twitter.com/arjunkdot)
 # MarkDown-Editor
